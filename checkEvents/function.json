@@ -2,10 +2,12 @@
   "scriptFile": "__init__.py",
   "bindings": [
     {
-      "name": "eventTimer",
-      "type": "timerTrigger",
-      "direction": "in",
-      "schedule": "0 */0 5 * * *"
+      "type": "eventHub",
+      "name": "$return",
+      "eventHubName": "powermanagereventhub",
+      "connection": "power-manager-hub.servicebus.windows.net",
+      "direction": "out",
+      "schedule": "0 */5 * * * *"
     }
   ]
 }
