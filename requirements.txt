@@ -3,5 +3,3 @@
 # Manually managing azure-functions-worker may cause unexpected issues
 
 azure-functions
-
-apikey-p4mambpljuws4b1mbk3t3exnow1tmrfyut20us4y
