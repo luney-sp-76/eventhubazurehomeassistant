@@ -2,6 +2,6 @@
   "IsEncrypted": false,
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "python",
-    "AzureWebJobsStorage": ""
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=homeassistantsb;AccountKey=6gJYBgwBDbanlbmyZL2rgaDjjDBrbK0hJwVXcUIfhh3jJ4q0huWAn6AL54T6XWh84zOb4ev+b9bd+ASt2jhvhg==;EndpointSuffix=core.windows.net"
   }
 }

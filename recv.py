@@ -13,7 +13,7 @@ async def on_event(partition_context, event):
 
 async def main():
     # Create an Azure blob checkpoint store to store the checkpoints.
-    checkpoint_store = BlobCheckpointStore.from_connection_string(app.AZURE_STORAGE_CONNECTION_STRING, + app.BLOB_CONTAINER_NAME)
+    checkpoint_store = BlobCheckpointStore.from_connection_string(app.AZURE_STORAGE_CONNECTION_STRING, app.BLOB_CONTAINER_NAME)
 
     # Create a consumer client for the event hub.
     client = EventHubConsumerClient.from_connection_string(app.EVENT_HUBS_NAMESPACE_CONNECTION_STRING, consumer_group="$Default", eventhub_name=app.EVENT_HUB_NAME, checkpoint_store=checkpoint_store)
