@@ -13,12 +13,23 @@ async def run():
         event_data_batch = await producer.create_batch()
 
         # Add events to the batch.
-        event_data_batch.add(EventData('First event '))
-        event_data_batch.add(EventData('Second event'))
-        event_data_batch.add(EventData('Third event'))
+        event_data_batch.add(EventData('on'))
+        event_data_batch.add(EventData('off'))
+        event_data_batch.add(EventData('on'))
 
         # Send the batch of events to the event hub.
         await producer.send_batch(event_data_batch)
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(run())
+# loop = asyncio.get_event_loop()
+
+if __name__ == "__main__":
+    try:
+        asyncio.run(
+            main()
+        )
+    except KeyboardInterrupt:
+        pass
+    # Run the main method.
+    #loop.run_until_complete(main())  
+   
+#loop.run_until_complete(run())

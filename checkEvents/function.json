@@ -7,7 +7,7 @@
       "eventHubName": "powermanagereventhub",
       "connection": "power-manager-hub.servicebus.windows.net",
       "direction": "out",
-      "schedule": "0 */5 * * * *"
+      "schedule": " */10 * * * * *"
     }
   ]
 }

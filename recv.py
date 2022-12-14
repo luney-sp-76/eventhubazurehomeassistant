@@ -21,7 +21,13 @@ async def main():
         # Call the receive method. Read from the beginning of the partition (starting_position: "-1")
         await client.receive(on_event=on_event,  starting_position="-1")
 
-if __name__ == '__main__':
-    loop = asyncio.get_event_loop()
+
+if __name__ == "__main__":
+    try:
+        asyncio.run(
+            main()
+        )
+    except KeyboardInterrupt:
+        pass
     # Run the main method.
     loop.run_until_complete(main())   
