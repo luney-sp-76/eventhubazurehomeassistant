@@ -3,7 +3,7 @@ from azure.eventhub.aio import EventHubProducerClient
 from azure.eventhub import EventData
 import app
 
-async def run():
+async def run(x):
     # Create a producer client to send messages to the event hub.
     # Specify a connection string to your event hubs namespace and
     # the event hub name.
@@ -13,19 +13,17 @@ async def run():
         event_data_batch = await producer.create_batch()
 
         # Add events to the batch.
-        event_data_batch.add(EventData('on'))
-        event_data_batch.add(EventData('off'))
-        event_data_batch.add(EventData('on'))
+        event_data_batch.add(EventData(x))
 
         # Send the batch of events to the event hub.
         await producer.send_batch(event_data_batch)
 
 # loop = asyncio.get_event_loop()
 
-if __name__ == "__main__":
+if __name__ == "__run__":
     try:
         asyncio.run(
-            run()
+            run('on')
         )
     except KeyboardInterrupt:
         pass

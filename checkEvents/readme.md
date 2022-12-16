@@ -1,6 +1,6 @@
 # TimerTrigger - Python
 
-The `TimerTrigger` makes it incredibly easy to have your functions executed on a schedule. This sample demonstrates a simple use case of calling your function every 5 minutes.
+The `TimerTrigger` makes it incredibly easy to have your functions executed on a schedule. This sample demonstrates a simple use case of calling the powermanger event function every 10 seconds.
 
 ## How it works
 

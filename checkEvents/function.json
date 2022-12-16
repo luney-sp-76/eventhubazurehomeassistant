@@ -1,6 +1,8 @@
-{
-  "scriptFile": "__init__.py",
-  "bindings": [
+
+  {
+    
+      "scriptFile": "__init__.py",
+       "bindings": [
     {
       "type": "eventHub",
       "name": "$return",
@@ -11,3 +13,6 @@
     }
   ]
 }
+
+
+  
