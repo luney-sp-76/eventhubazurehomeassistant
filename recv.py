@@ -8,6 +8,7 @@ async def on_event(partition_context, event):
     print("Received the event: \"{}\" from the partition with ID: \"{}\"".format(event.body_as_str(encoding='UTF-8'), partition_context.partition_id))
     # return event as json then use the entity_id as the delimiter
     # return event.body_as_str(encoding='UTF-8')
+    # for each object check entity_id then post object properties to the SQL db
     
 
     # Update the checkpoint so that the program doesn't read the events
