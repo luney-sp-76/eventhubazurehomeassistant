@@ -6,3 +6,6 @@ AZURE_STORAGE_CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=ho
 BLOB_CONTAINER_NAME = "homeassistant"
 EVENT_HUBS_NAMESPACE_CONNECTION_STRING = "Endpoint=sb://power-manager-hub.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=40LDSA7yxflKu88sxX3ypeuCcQsCib78KeTdPr5ONBw="
 DBUSER = "poweruser"
+DBPASS = "Culturekids1!"
+DBHOST = "dbserver-powermanager-po19760126.mysql.database.azure.com"
+DB = "powermanager"

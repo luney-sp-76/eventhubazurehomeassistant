@@ -3,12 +3,12 @@ import app
 
 def connected():
     config = {
-        'user': 'poweruser',
-        # 'password': 'A5DVtUB8xE6)@xr',
-        'password': 'Culturekids1!',
-        'host': 'dbserver-powermanager-po19760126.mysql.database.azure.com',
+        'user': app.DBUSER,
+        # 'password': app.DBPASS,
+        'password': app.DBPASS,
+        'host': app.DBHOST,
         # 'unix_socket': '/Applications/MAMP/tmp/mysql/mysql.sock',
-        'database': 'powermanager',
+        'database': app.DB,
         'raise_on_warnings': True
     }
     connection_x = mysql.connector.connect(**config)
