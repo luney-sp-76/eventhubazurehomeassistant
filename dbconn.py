@@ -14,7 +14,7 @@ raise_on_warnings = True
 
 
 connection = mysql.connector.connect(user=f"{db_admin_name}@{db_server_name}",
-    password=db_admin_password, host=f"{db_server_name}.mysql.database.azure.com",
+    password=db_admin_password, host=db_server_name,
     port=3306, database=db_name, ssl_ca="./DigiCertGlobalRootCA.crt.pem", ssl_disabled=False)
 
 
