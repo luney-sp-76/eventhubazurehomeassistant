@@ -1,5 +1,5 @@
 import asyncio
-from asyncore import loop
+
 from azure.eventhub.aio import EventHubConsumerClient
 from azure.eventhub.extensions.checkpointstoreblobaio import BlobCheckpointStore
 import os
