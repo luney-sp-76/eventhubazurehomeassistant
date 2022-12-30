@@ -7,15 +7,20 @@ db_server_name = app.DBHOST
 db_name =  app.DB
 password=app.DBPASS
     
-  
+try:
+    conn = mysql.connector.connect(user=db_admin_name,
+                                   password=password,
+                                   database=db_name,
+                                   host=db_server_name
+                                   ,ssl_ca='/Users/paulolphert/git_repo/QUB Final Project/DigiCertGlobalRootCA.crt.pem')
+except mysql.connector.Error as err:
+    print(err) 
 
 
-connection = mysql.connector.connect(user=f"{db_admin_name}@{db_server_name}",
-     password=password,host=db_server_name,
-    port=3306, database=db_name, ssl_ca="https://cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem", ssl_disabled=False)
 
 
-cursor = connection.cursor()
+
+cursor = conn.cursor()
 
 cursor.execute(
     'SELECT device_name, current_level_percentual_offset,wattage_percentual_offset,energy_kwh, temperature_degrees_centigrade, voltage_level_percentual_offset, '
@@ -39,4 +44,4 @@ for row in results:
     percentage = row['current_level_percentual_offset']
     print('%s | %s' % (name, percentage))
 
-connection.close()
+conn.close()
