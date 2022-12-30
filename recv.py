@@ -1,4 +1,5 @@
 import asyncio
+from asyncore import loop
 from azure.eventhub.aio import EventHubConsumerClient
 from azure.eventhub.extensions.checkpointstoreblobaio import BlobCheckpointStore
 import os
@@ -25,10 +26,9 @@ async def main():
     # Create a consumer client for the event hub.
     client = EventHubConsumerClient.from_connection_string(
         os.environ.get('EVENT_HUBS_NAMESPACE_CONNECTION_STRING'), consumer_group="$Default",
-                       eventhub_name=os.environ.get('EVENT_HUB_NAME'), checkpoint_store=checkpoint_store)
-        async
-    with client:
-    # Call the receive method. Read from the beginning of the partition (starting_position: "-1")
+        eventhub_name=os.environ.get('EVENT_HUB_NAME'), checkpoint_store=checkpoint_store)
+    async with client:
+        # Call the receive method. Read from the beginning of the partition (starting_position: "-1")
         await client.receive(on_event=on_event, starting_position="-1")
 
     if __name__ == "__main__":
@@ -39,4 +39,4 @@ async def main():
         except KeyboardInterrupt:
             pass
     # Run the main method.
-    loop.run_until_complete(main())   
+    loop.run_until_complete(main())
