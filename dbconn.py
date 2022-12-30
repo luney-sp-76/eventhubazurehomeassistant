@@ -1,21 +1,19 @@
+import os
 import mysql.connector
 import app
 
-def connected():
-    config = {
-        'user': app.DBUSER,
-        # 'password': app.DBPASS,
-        'password': app.DBPASS,
-        'host': app.DBHOST,
-        # 'unix_socket': '/Applications/MAMP/tmp/mysql/mysql.sock',
-        'database': app.DB,
-        'raise_on_warnings': True
-    }
-    connection_x = mysql.connector.connect(**config)
-    return connection_x
 
 
-cnx = connected()
+user = os.environ['DBUSER']
+password = os.environ['DBPASS']
+host = os.environ['DBHOST']
+database =  os.environ['DB']
+raise_on_warnings = True
+    
+  
+
+
+cnx = cnx = mysql.connector.connect(user=user, password=password, host=host, port=3306, database=database, ssl_ca="{ca-cert filename}", ssl_disabled=False)
 
 cursor = cnx.cursor(dictionary=True)
 

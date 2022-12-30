@@ -4,4 +4,8 @@
 
 azure-functions
 azure-storage-blob
+azure-mgmt-resource
+azure-mgmt-rdbms
 azure-identity
+mysql
+mysql-connectorazure-identity
