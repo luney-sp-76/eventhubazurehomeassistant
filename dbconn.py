@@ -5,13 +5,13 @@ import app
 db_admin_name = app.DBUSER
 db_server_name = app.DBHOST
 db_name =  app.DB
-raise_on_warnings = True
+password=app.DBPASS
     
   
 
 
 connection = mysql.connector.connect(user=f"{db_admin_name}@{db_server_name}",
-     host=db_server_name,
+     password=password,host=db_server_name,
     port=3306, database=db_name, ssl_ca="./DigiCertGlobalRootCA.crt.pem", ssl_disabled=False)
 
 
