@@ -1,7 +1,7 @@
 
 import mysql.connector
 import app
-
+from collections import namedtuple
 db_admin_name = app.DBUSER
 db_server_name = app.DBHOST
 db_name =  app.DB
