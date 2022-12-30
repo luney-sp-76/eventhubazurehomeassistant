@@ -1,7 +1,7 @@
 import asyncio
 from azure.eventhub.aio import EventHubConsumerClient
 from azure.eventhub.extensions.checkpointstoreblobaio import BlobCheckpointStore
-import app
+import os
 
 async def on_event(partition_context, event):
     # Print the event data.
@@ -17,10 +17,10 @@ async def on_event(partition_context, event):
 
 async def main():
     # Create an Azure blob checkpoint store to store the checkpoints.
-    checkpoint_store = BlobCheckpointStore.from_connection_string(app.AZURE_STORAGE_CONNECTION_STRING, app.BLOB_CONTAINER_NAME)
+    checkpoint_store = BlobCheckpointStore.from_connection_string(os.environ.get('AZURE_STORAGE_CONNECTION_STRING'), os.environ.get('BLOB_CONTAINER_NAME'))
 
     # Create a consumer client for the event hub.
-    client = EventHubConsumerClient.from_connection_string(app.EVENT_HUBS_NAMESPACE_CONNECTION_STRING, consumer_group="$Default", eventhub_name=app.EVENT_HUB_NAME, checkpoint_store=checkpoint_store)
+    client = EventHubConsumerClient.from_connection_string(os.environ.get(EVENT_HUBS_NAMESPACE_CONNECTION_STRING, consumer_group="$Default", eventhub_name=app.EVENT_HUB_NAME, checkpoint_store=checkpoint_store)
     async with client:
         # Call the receive method. Read from the beginning of the partition (starting_position: "-1")
         await client.receive(on_event=on_event,  starting_position="-1")
