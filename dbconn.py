@@ -2,20 +2,21 @@ import os
 import mysql.connector
 import app
 
-
-
-user = os.environ['DBUSER']
-password = os.environ['DBPASS']
-host = os.environ['DBHOST']
-database =  os.environ['DB']
+db_admin_name = os.environ['DBUSER']
+db_admin_password = os.environ['DBPASS']
+db_server_name = os.environ['DBHOST']
+db_name =  os.environ['DB']
 raise_on_warnings = True
     
   
 
 
-cnx = cnx = mysql.connector.connect(user=user, password=password, host=host, port=3306, database=database, ssl_ca="{ca-cert filename}", ssl_disabled=False)
+connection = mysql.connector.connect(user=f"{db_admin_name}@{db_server_name}",
+    password=db_admin_password, host=f"{db_server_name}.mysql.database.azure.com",
+    port=3306, database=db_name, ssl_ca="./DigiCertGlobalRootCA.crt.pem", ssl_disabled=False)
 
-cursor = cnx.cursor(dictionary=True)
+
+cursor = connection.cursor()
 
 cursor.execute(
     'SELECT device_name, current_level_percentual_offset,wattage_percentual_offset,energy_kwh, temperature_degrees_centigrade, voltage_level_percentual_offset, '
@@ -39,4 +40,4 @@ for row in results:
     percentage = row['current_level_percentual_offset']
     print('%s | %s' % (name, percentage))
 
-cnx.close()
+connection.close()
