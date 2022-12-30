@@ -1,11 +1,13 @@
-import os
+
 import mysql.connector
 import app
 
-db_admin_name = os.environ['DBUSER']
-db_admin_password = os.environ['DBPASS']
-db_server_name = os.environ['DBHOST']
-db_name =  os.environ['DB']
+
+
+db_admin_name = app.DBUSER
+db_admin_password = app.DBPASS
+db_server_name = app.DBHOST
+db_name =  app.DB
 raise_on_warnings = True
     
   
