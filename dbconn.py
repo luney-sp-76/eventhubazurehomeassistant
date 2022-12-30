@@ -2,7 +2,6 @@
 import mysql.connector
 import app
 
-
 db_admin_name = app.DBUSER
 db_server_name = app.DBHOST
 db_name =  app.DB
