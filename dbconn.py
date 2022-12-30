@@ -4,7 +4,7 @@ import app
 
 
 
-db_admin_name = app.DBUSE
+db_admin_name = app.DBUSER
 db_server_name = app.DBHOST
 db_name =  app.DB
 raise_on_warnings = True
