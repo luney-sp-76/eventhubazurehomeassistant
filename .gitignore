@@ -6,6 +6,13 @@ __pycache__/
 # C extensions
 *.so
 
+# _azurite_db_blob
+__azurite_db_blob__.json
+__azurite_db_blob_extent__.json
+__azurite_db_queue__.json
+__azurite_db_queue_extent__.json
+__azurite_db_table__.json
+
 # Distribution / packaging
 .Python
 build/
