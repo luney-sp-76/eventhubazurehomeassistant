@@ -1,3 +1,7 @@
+import asyncio
+from azure.eventhub.aio import EventHubConsumerClient
+from azure.eventhub.extensions.checkpointstoreblobaio import BlobCheckpointStore
+
 async def on_event(partition_context, event):
     # Print the event data.
     print("Received the event: \"{}\" from the partition with ID: \"{}\"".format(event.body_as_str(encoding='UTF-8'), partition_context.partition_id))
