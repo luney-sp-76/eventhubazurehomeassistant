@@ -1,10 +1,8 @@
 import asyncio
-import logging
 from azure.eventhub.aio import EventHubConsumerClient
 from azure.eventhub.extensions.checkpointstoreblobaio import BlobCheckpointStore
 
-logger = logging.getLogger("azure.eventhub")
-logging.basicConfig(level=logging.INFO)
+
 
 async def on_event(partition_context, event):
     # Print the event data.
