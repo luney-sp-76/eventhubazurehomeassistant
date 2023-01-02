@@ -1,7 +1,14 @@
 import asyncio
 from azure.eventhub.aio import EventHubConsumerClient
 from azure.eventhub.extensions.checkpointstoreblobaio import BlobCheckpointStore
+import json
 
+with open('local.settings.json','r') as f:
+    data = json.load(f)
+
+json_str = json.dumps(data)
+
+auth = json.loads(json_str)
 
 
 async def on_event(partition_context, event):
@@ -14,10 +21,9 @@ async def on_event(partition_context, event):
 
 async def main():
     # Create an Azure blob checkpoint store to store the checkpoints.
-    checkpoint_store = BlobCheckpointStore.from_connection_string("DefaultEndpointsProtocol=https;AccountName=homeassistantsb;AccountKey=6gJYBgwBDbanlbmyZL2rgaDjjDBrbK0hJwVXcUIfhh3jJ4q0huWAn6AL54T6XWh84zOb4ev+b9bd+ASt2jhvhg==;EndpointSuffix=core.windows.net", "homeassistant")
+    checkpoint_store = BlobCheckpointStore.from_connection_string(auth['AZURE_STORAGE_CONNECTION_STRING'], "homeassistant")
 
     # Create a consumer client for the event hub.
-    client = EventHubConsumerClient.from_connection_string("Endpoint=sb://power-manager-hub.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=40LDSA7yxflKu88sxX3ypeuCcQsCib78KeTdPr5ONBw=", consumer_group="$Default", eventhub_name="powermanagereventhub", checkpoint_store=checkpoint_store)
     async with client:
         # Call the receive method. Read from the beginning of the partition (starting_position: "-1")
         await client.receive(on_event=on_event,  starting_position="-1")
