@@ -1,5 +1,5 @@
 import asyncio
-from azure.eventhub.aio import EventHubConsumerClient as client
+from azure.eventhub.aio import EventHubConsumerClient
 from azure.eventhub.extensions.checkpointstoreblobaio import BlobCheckpointStore
 import json
 
@@ -9,6 +9,9 @@ with open('local.settings.json','r') as f:
 json_str = json.dumps(data)
 
 auth = json.loads(json_str)
+
+
+
 
 
 async def on_event(partition_context, event):
@@ -21,15 +24,15 @@ async def on_event(partition_context, event):
 
 async def main():
     # Create an Azure blob checkpoint store to store the checkpoints.
-    checkpoint_store = BlobCheckpointStore.from_connection_string(auth['AZURE_STORAGE_CONNECTION_STRING'], "homeassistant")
+    checkpoint_store = BlobCheckpointStore.from_connection_string("AZURE STORAGE CONNECTION STRING", "BLOB CONTAINER NAME")
 
     # Create a consumer client for the event hub.
+    client = EventHubConsumerClient.from_connection_string("EVENT HUBS NAMESPACE CONNECTION STRING", consumer_group="$Default", eventhub_name="EVENT HUB NAME", checkpoint_store=checkpoint_store)
     async with client:
         # Call the receive method. Read from the beginning of the partition (starting_position: "-1")
         await client.receive(on_event=on_event,  starting_position="-1")
 
-
-
-loop = asyncio.get_running_loop()
-loop.run_until_complete(main())
-loop.close()
+if __name__ == '__main__':
+    loop = asyncio.get_event_loop()
+    # Run the main method.
+    loop.run_until_complete(main())    
