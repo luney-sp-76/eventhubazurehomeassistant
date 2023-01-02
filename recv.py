@@ -43,7 +43,7 @@ def silence_event_loop_closed(func):
                 raise
     return wrapper
  
-_ProactorBasePipeTransport.__del__ = silence_event_loop_closed(_ProactorBasePipeTranspo
+_ProactorBasePipeTransport.__del__ = silence_event_loop_closed(_ProactorBasePipeTransport.__del__)
 asyncio.set_event_loop(asyncio.ProactorEventLoop())
 
 loop = asyncio.get_event_loop()
