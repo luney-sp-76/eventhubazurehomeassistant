@@ -1,5 +1,6 @@
 import asyncio
 from azure.eventhub.aio import EventHubConsumerClient
+from azure.eventhub.aio import EventHubConsumerClient
 from azure.eventhub.extensions.checkpointstoreblobaio import BlobCheckpointStore
 import json
 
