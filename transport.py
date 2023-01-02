@@ -41,8 +41,8 @@ while True:
     # Insert the messages into the MySQL database
     cursor = mydb.cursor()
     for message in messages:
-        sql = 'INSERT INTO <table_name> (field1, field2, field3) VALUES (%s, %s, %s)'
-        val = (message.field1, message.field2, message.field3)
+        sql = 'INSERT INTO device (device_id, device_brand, device_model, device_name, is_smart_device, has_battery, is_on) VALUES ("entity_id", "iPhone", "8", "iPhone_8_no_1", 1,0)'
+        val = (message.field1, message.field2, message.field3, message.field4, message.field5, message.field6, message.field7)
         cursor.execute(sql, val)
         mydb.commit()
     cursor.close()
