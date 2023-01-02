@@ -20,7 +20,7 @@ Receiver = event_hub_client.create_consumer(
     consumer_group='$Default',
     partition_id='1',
     event_position=Offset(-1),
-    prefetch=100
+    prefetch=0
 )
 
 # Connect to the MySQL database
