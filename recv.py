@@ -29,10 +29,8 @@ async def main():
         await client.receive(on_event=on_event,  starting_position="-1")
 
 
-if __name__ == '__main__':
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-    try:
-        asyncio.run(main(loop=loop))
-    except KeyboardInterrupt:
-        pass
+asyncio.set_event_loop(asyncio.ProactorEventLoop())
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main())
+loop.close()
