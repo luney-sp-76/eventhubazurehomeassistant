@@ -6,7 +6,7 @@ import os
 
 
 
-CONNECTION_STR = os.environ["CONNECTION_STRING"]
+CONNECTION_STR = os.environ["EVENT_HUBS_NAMESPACE_CONNECTION_STRING"]
 EVENTHUB_NAME = os.environ['EVENT_HUB_NAME']
 STORAGE_CONNECTION_STR = os.environ["AZURE_STORAGE_CONNECTION_STRING"]
 BLOB_CONTAINER_NAME = "homeassistant"  # Please make sure the blob container resource exists.
