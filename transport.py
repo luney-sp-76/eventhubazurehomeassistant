@@ -1,5 +1,5 @@
 import time
-from azure.eventhub import EventHubConsumerClient, Receiver, Offset
+from azure.eventhub import EventHubConsumerClient
 import json
 
 with open('local.settings.json','r') as f:
@@ -16,10 +16,10 @@ event_hub_client = EventHubConsumerClient.from_connection_string(
 )
 
 # Create a receiver to read messages from the Event Hub
-Receiver = event_hub_client.create_consumer(
+receiver = event_hub_client.create_consumer(
     consumer_group='$Default',
     partition_id='1',
-    event_position=Offset(-1),
+    starting_position="-1",
     prefetch=0
 )
 
