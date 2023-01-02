@@ -16,7 +16,7 @@ event_hub_client = EventHubConsumerClient.from_connection_string(
 )
 
 # Create a receiver to read messages from the Event Hub
-receiver = event_hub_client.create_consumer(
+Receiver = event_hub_client.create_consumer(
     consumer_group='$Default',
     partition_id='1',
     event_position=Offset(-1),
@@ -27,16 +27,16 @@ receiver = event_hub_client.create_consumer(
 import mysql.connector
 
 mydb = mysql.connector.connect(
-  host='<database_host>',
-  user='<database_username>',
-  password='<database_password>',
-  database='<database_name>'
+  host=auth['DBHOST'],
+  user=auth['DBUSER'],
+  password=auth['DBPASS'],
+  database=auth['DB']
 )
 
 # Continuously read messages from the Event Hub and update the MySQL database
 while True:
     # Get a batch of messages from the Event Hub
-    messages = receiver.receive(timeout=10)
+    messages = Receiver.receive(timeout=10)
 
     # Insert the messages into the MySQL database
     cursor = mydb.cursor()
