@@ -2,18 +2,13 @@ import asyncio
 from azure.eventhub.aio import EventHubConsumerClient
 from azure.eventhub.aio import EventHubConsumerClient
 from azure.eventhub.extensions.checkpointstoreblobaio import BlobCheckpointStore
-import json
+import os
 
-with open('local.settings.json','r') as f:
-    data = json.load(f)
 
-json_str = json.dumps(data)
 
-auth = json.loads(json_str)
-
-CONNECTION_STR = auth["CONNECTION_STRING"]
-EVENTHUB_NAME = auth['EVENT_HUB_NAME']
-STORAGE_CONNECTION_STR = auth["AZURE_STORAGE_CONNECTION_STRING"]
+CONNECTION_STR = os.environ["CONNECTION_STRING"]
+EVENTHUB_NAME = os.environ['EVENT_HUB_NAME']
+STORAGE_CONNECTION_STR = os.environ["AZURE_STORAGE_CONNECTION_STRING"]
 BLOB_CONTAINER_NAME = "homeassistant"  # Please make sure the blob container resource exists.
 
 
