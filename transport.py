@@ -1,7 +1,7 @@
 import time
 from azure.eventhub import EventHubConsumerClient
 import json
-
+import os
 with open('local.settings.json','r') as f:
     data = json.load(f)
 
@@ -11,8 +11,8 @@ auth = json.loads(json_str)
 
 # Connect to the Event Hub
 event_hub_client = EventHubConsumerClient.from_connection_string(
-    conn_str=auth['EVENT_HUBS_NAMESPACE_CONNECTION_STRING'],
-    eventhub_name=auth['EVENT_HUB_NAME']
+    conn_str=os.environ.get('EVENT_HUBS_NAMESPACE_CONNECTION_STRING'),
+    eventhub_name=os.environ.get('EVENT_HUB_NAME')
 )
 
 # Create a receiver to read messages from the Event Hub
@@ -27,10 +27,10 @@ receiver = event_hub_client.create_consumer(
 import mysql.connector
 
 mydb = mysql.connector.connect(
-  host=auth['DBHOST'],
-  user=auth['DBUSER'],
-  password=auth['DBPASS'],
-  database=auth['DB']
+  host=os.environ.get('DBHOST'),
+  user=os.environ.get('DBUSER'),
+  password=os.environ.get('DBPASS'),
+  database=os.environ.get('DB')
 )
 
 # Continuously read messages from the Event Hub and update the MySQL database
